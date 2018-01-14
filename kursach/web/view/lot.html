@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Католог лотов</title>
+    <link href="../lib/css/bootstrap.min.css" rel="stylesheet">
+    <link href="../lib/css/style.css" rel="stylesheet">
+    <script src="../service/LotService.js"></script>
+    <script src="../controllers/LotController.js"></script>
+  </head>
+  <body>
+      <div id="header" class="container">
+          <div class="row">
+              <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <h1>Лоты</h1>
+                    <div id="lot"> </div>
+              </div>
+           </div>
+      </div>
+      <div id="main" class="container">
+        <div class="row">
+             <div id="lot" class="col-lg-12 col-md-12 col-sm-12 col-xs-12"></div>
+        </div>
+      </div>
+
+    <script src="../lib/js/jquery.min.js"></script>
+    <script src="../lib/js/bootstrap.min.js"></script>
+    <script>
+    window.onload = function ()
+    {
+        var url = new URL(document.location.href);
+        var lot= url.searchParams.get("lot");
+        var lotController = new LotController();
+        lotController.getAllLotView(lot);
+    };    
+    </script>    
+ </body>
+</html>
