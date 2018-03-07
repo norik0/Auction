@@ -30,11 +30,17 @@ public class RateDal extends BaseDal
      public Rate selectById(int id)
     {
       SqlSession session = sqlSessionFactory.openSession(); 
-      Rate rate= session.selectOne("rate.selectById",id);
+      Rate rate= (Rate)session.selectOne("rate.selectById",id);
       session.close();
       return rate;
     }
-    
+    public Rate selectLastRate()
+    {
+      SqlSession session = sqlSessionFactory.openSession(); 
+      Rate rate= (Rate)session.selectOne("rate.selectLastRate");
+      session.close();
+      return rate;
+    }
     public int insert(Rate rate)
     {
       SqlSession session = sqlSessionFactory.openSession(); 

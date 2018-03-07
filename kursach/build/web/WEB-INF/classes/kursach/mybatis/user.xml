@@ -8,6 +8,7 @@
        <result property = "login" column ="login"/> 
        <result property = "password" column = "password"/> 
         <collection property="lot" javaType="List"  ofType="kursach.model.Lot" column="id" select="selectLot"/>
+<!--        <collection property="rate" javaType="List"  ofType="kursach.model.Rate" column="login" select="selectRate"/>-->
     </resultMap> 
 
     <select id = "selectAll" resultMap = "resultUser"> 
@@ -37,4 +38,8 @@
     <select id="selectLot" parameterType="int" resultMap="lot.resultLot">  
         select * from lot where user_id= #{id}
    </select>
+   
+<!--   <select login="selectRate" parameterType="string" resultMap="rate.resultRate">  
+        select * from rate where user_id= #{id}
+   </select>-->
 </mapper> 

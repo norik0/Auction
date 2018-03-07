@@ -1,8 +1,8 @@
 
 package kursach.api;
 
+import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.PrintWriter;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -11,9 +11,11 @@ import javax.servlet.http.HttpServletResponse;
 import mappers.JsonLotMapper;
 import kursach.controllers.LotController;
 import kursach.model.Lot;
+import org.json.JSONException;
 
 
-@WebServlet(name = "InsertLot", urlPatterns = {"/InsertLot"})
+
+@WebServlet(name = "json", urlPatterns = {"/json"})
 public class InsertLot extends HttpServlet {
 
     /**
@@ -25,18 +27,10 @@ public class InsertLot extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
+    
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
-        String json=request.getParameter("json");
         
-        try (PrintWriter out = response.getWriter()) 
-        {
-            LotController controller = new LotController();
-            Lot lot =JsonLotMapper.fromJSON(json);
-            int count =controller.insertLot(lot);
-            out.println(count);
-        }
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -65,7 +59,23 @@ public class InsertLot extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+    StringBuffer sb = new StringBuffer();
+    String line = null;
+
+    BufferedReader reader = request.getReader();
+    while ((line = reader.readLine()) != null)
+        sb.append(line);
+
+    try {
+        String str = sb.toString();
+        Lot lot = JsonLotMapper.fromJSON(str);
+        LotController lotController = new LotController();
+        lotController.insertLot(lot);
+        
+    } catch (JSONException e) {
+        //throw new IOException("Error parsing JSON request string");
+    }
+
     }
 
     /**

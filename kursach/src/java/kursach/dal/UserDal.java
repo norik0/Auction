@@ -31,7 +31,7 @@ public class UserDal extends BaseDal{
      public User selectById(int id)
     {
       SqlSession session = sqlSessionFactory.openSession(); 
-      User user= session.selectOne("user.selectById",id);
+      User user= (User)session.selectOne("user.selectById",id);
       session.close();
       return user;
     }

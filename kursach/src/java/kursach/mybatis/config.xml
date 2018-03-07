@@ -20,6 +20,6 @@
   <mappers> 
     <mapper resource="kursach/mybatis/lot.xml"/> 
     <mapper resource="kursach/mybatis/rate.xml"/> 
-    <mapper resource="kursach/mybatis/user.xml"/> 
+    <mapper resource="kursach/mybatis/user.xml"/>  
   </mappers> 
 </configuration>

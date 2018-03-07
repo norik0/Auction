@@ -7,9 +7,9 @@ package kursach.controllers;
 
 import java.util.List;
 import kursach.dal.RateDal;
-import kursach.dal.UserDal;
+//import kursach.dal.UserDal;
 import kursach.model.Rate;
-import kursach.model.User;
+//import kursach.model.User;
 
 
 public class RateController 
@@ -27,6 +27,11 @@ public class RateController
     public Rate getRateById(int id)
     {
         return rateDal.selectById(id);
+    }
+    
+    public Rate getLastRate()
+    {
+        return rateDal.selectLastRate();
     }
     
     public int insertRate(Rate rate)

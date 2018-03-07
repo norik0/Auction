@@ -31,9 +31,9 @@ public class LotDal extends BaseDal
      public Lot selectById(int id)
     {
       SqlSession session = sqlSessionFactory.openSession(); 
-      Lot news= session.selectOne("lot.selectById",id);
+      Lot lot = (Lot)session.selectOne("lot.selectById",id);
       session.close();
-      return news;
+      return lot;
     }
     
     public int insert(Lot lot)

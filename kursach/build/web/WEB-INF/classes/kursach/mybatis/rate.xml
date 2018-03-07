@@ -5,15 +5,16 @@
     
     <resultMap id = "resultRate" type = "kursach.model.Rate"> 
        <result property = "id" column = "id"/> 
-       <result property = "name" column = "name"/> 
        <result property = "login" column = "login"/>
        <result property = "price" column = "price"/>
-       <result property = "time" column = "time"/> 
-       <collection property="lot" javaType="List"  ofType="kursach.model.Lot" column="id" select="selectLot"/>
     </resultMap> 
 
     <select id = "selectAll" resultMap = "resultRate"> 
         SELECT * FROM rate;  
+    </select> 
+    
+    <select id = "selectLastRate" resultMap = "resultRate"> 
+        select * from rate where id = (select max(id) from rate)  
     </select> 
  
     <select id = "selectById" parameterType = "int" resultMap = "resultRate"> 
@@ -23,5 +24,17 @@
    <select id="selectLot" parameterType="int" resultMap="lot.resultLot">  
         select * from lot where rate_id= #{id}
    </select>
+   
+   <insert id = "insert" parameterType = "kursach.model.Rate"> 
+       INSERT INTO rate (login, price)
+       VALUES (#{login},#{price});   
+    </insert>
+    
+    <update id = "update" parameterType = "kursach.model.Rate"> 
+       UPDATE rate SET 
+        login = #{login}, 
+        price = #{price}
+        WHERE id = #{id}; 
+    </update>
 </mapper> 
 

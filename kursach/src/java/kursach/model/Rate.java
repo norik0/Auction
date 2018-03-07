@@ -15,31 +15,24 @@ import java.util.Objects;
  */
 public class Rate {
     private long id;
-    private String name;
     private String login;
     private Double price;
-    private Date time;
-//    private List<User> user;
+    private List<Rate> rates;
     
      public Rate()
     {}
 
-    public Rate(long id, String name, String login, Double price, Date time, List<User> user) {
+    public Rate(long id, String login, Double price, Date time, List<Rate> rates) {
         this.id = id;
-        this.name = name;
         this.login = login;
         this.price = price;
-        this.time = time;
-//        this.user = user;
+        this.rates = rates;
     }
 
     public long getId() {
         return id;
     }
 
-    public String getName() {
-        return name;
-    }
 
     public String getLogin() {
         return login;
@@ -49,21 +42,15 @@ public class Rate {
         return price;
     }
 
-    public Date getTime() {
-        return time;
-    }
 
-//    public List<User> getUser() {
-//        return user;
-//    }
+    public List<Rate> getRate() {
+        return rates;
+    }
 
     public void setId(long id) {
         this.id = id;
     }
 
-    public void setName(String name) {
-        this.name = name;
-    }
 
     public void setLogin(String login) {
         this.login = login;
@@ -73,23 +60,19 @@ public class Rate {
         this.price = price;
     }
 
-    public void setTime(Date time) {
-        this.time = time;
-    }
 
-//    public void setUser(List<User> user) {
-//        this.user = user;
-//    }
+
+    public void setRate(List<Rate> rates) {
+        this.rates = rates;
+    }
 
     @Override
     public int hashCode() {
         int hash = 5;
         hash = 71 * hash + (int) (this.id ^ (this.id >>> 32));
-        hash = 71 * hash + Objects.hashCode(this.name);
         hash = 71 * hash + Objects.hashCode(this.login);
         hash = 71 * hash + Objects.hashCode(this.price);
-        hash = 71 * hash + Objects.hashCode(this.time);
-//        hash = 71 * hash + Objects.hashCode(this.user);
+        hash = 71 * hash + Objects.hashCode(this.rates);
         return hash;
     }
 
@@ -108,27 +91,22 @@ public class Rate {
         if (this.id != other.id) {
             return false;
         }
-        if (!Objects.equals(this.name, other.name)) {
-            return false;
-        }
+       
         if (!Objects.equals(this.login, other.login)) {
             return false;
         }
         if (!Objects.equals(this.price, other.price)) {
             return false;
         }
-        if (!Objects.equals(this.time, other.time)) {
+        if (!Objects.equals(this.rates, other.rates)) {
             return false;
         }
-//        if (!Objects.equals(this.user, other.user)) {
-//            return false;
-//        }
         return true;
     }
 
     @Override
     public String toString() {
-        return "Rate{" + "id=" + id + ", name=" + name + ", login=" + login + ", price=" + price + ", time=" + time + '}';
+        return "Rate{" + "id=" + id + ", login=" + login + ", price=" + price + '}';
     }
 
   

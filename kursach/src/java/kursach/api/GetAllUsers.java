@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package kursach.api;
 
 import java.io.IOException;
@@ -17,10 +13,7 @@ import mappers.JsonUserMapper;
 import kursach.controllers.UserController;
 import kursach.model.User;
 
-/**
- *
- * @author Alex
- */
+
 @WebServlet(name = "GetAllUsers", urlPatterns = {"/GetAllUsers"})
 public class GetAllUsers extends HttpServlet {
 

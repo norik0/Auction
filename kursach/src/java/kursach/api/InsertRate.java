@@ -1,3 +1,4 @@
+
 package kursach.api;
 
 import java.io.IOException;
@@ -26,15 +27,16 @@ public class InsertRate extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
+        response.setContentType("text/html;charset=UTF-8");        
         String json=request.getParameter("json");
-        
+        /**json="{\"id\":0,\"name\":\"Золотое кольцо\",\"user_id\":1,\"description\":\"Изящное кольцо\",\"first_price\":100,\"last_price\":1000,\"first_time\":\"2018-01-01\",\"last_time\":\"2018-01-02\",\"image\":\"null\"}";
+   **/     
         try (PrintWriter out = response.getWriter()) 
-        {
-            Rate rate =JsonRateMapper.fromJson(json);
-            RateController controller = new RateController();
-            int count =controller.insertRate(rate);
-            out.println(count);
+        {           
+            Rate rate = JsonRateMapper.fromJSON(json);
+            RateController rateController = new RateController();
+            int count = rateController.insertRate(rate);
+            out.print(count);
         }
     }
 

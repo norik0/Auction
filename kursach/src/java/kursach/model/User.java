@@ -17,6 +17,7 @@ public class User {
     private String login;
     private String password;
     private List<Lot> lot;
+    private List<Rate> rate;
     
     public User()
     {}
@@ -26,6 +27,7 @@ public class User {
         this.login = login;
         this.password = password;
         this.lot = lot;
+        this.rate = rate;
     }
 
     public long getId() {
@@ -43,6 +45,10 @@ public class User {
     public List<Lot> getLot() {
         return lot;
     }
+    
+     public List<Rate> getRate() {
+        return rate;
+    }
 
     public void setId(long id) {
         this.id = id;
@@ -59,6 +65,10 @@ public class User {
     public void setLot(List<Lot> lot) {
         this.lot = lot;
     }
+    
+     public void setRate(List<Rate> rate) {
+        this.rate = rate;
+    }
 
     @Override
     public int hashCode() {
@@ -67,6 +77,7 @@ public class User {
         hash = 67 * hash + Objects.hashCode(this.login);
         hash = 67 * hash + Objects.hashCode(this.password);
         hash = 67 * hash + Objects.hashCode(this.lot);
+         hash = 67 * hash + Objects.hashCode(this.rate);
         return hash;
     }
 
@@ -94,12 +105,16 @@ public class User {
         if (!Objects.equals(this.lot, other.lot)) {
             return false;
         }
+        
+        if (!Objects.equals(this.rate, other.rate)) {
+            return false;
+        }
         return true;
     }
 
     @Override
     public String toString() {
-        return "User{" + "id=" + id + ", login=" + login + ", password=" + password + ", lot=" + lot + '}';
+        return "User{" + "id=" + id + ", login=" + login + ", password=" + password + ", lot=" + lot + ", rate=" + rate + '}';
     }
 
      
